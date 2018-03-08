@@ -1,4 +1,4 @@
 <div id="searchbox">
-  <input type="text"/>
-  <button>Search</button>
+  <input type="text" [(ngModel)]="model.searchText"/>
+  <button (click)="cari()">Search</button>
 </div>

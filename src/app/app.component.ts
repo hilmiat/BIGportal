@@ -15,9 +15,11 @@ export class AppComponent implements OnInit{
     {
       center:L.latLng(-6.5588784,106.8536461),
       zoom:12,
+      zoomControl:false,
       layers:[this.mapService.baseMaps.OpenStreetMap]
     });
     //menambahkan control untuk memilih layer
     L.control.layers(this.mapService.baseMaps).addTo(mymap);
+    L.control.zoom({position:"bottomleft"}).addTo(mymap);
   }
 }
