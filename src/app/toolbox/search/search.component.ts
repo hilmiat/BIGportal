@@ -10,6 +10,9 @@ import { GeolocationService } from '../../service/geolocation.service';
 })
 export class SearchComponent implements OnInit {
   model = {searchText:''}
+  /**
+   * Method mencari alamat lalu pundah ke alamat yang dituju
+   */
   cari(){
     // const latlng = this.model.searchText.split(",");
     // console.log("Menuju posisi:",latlng);
@@ -19,13 +22,17 @@ export class SearchComponent implements OnInit {
     // );
     this.geoloc.geocode(this.model.searchText).subscribe(
       (result)=>{
-        
-        console.log(result);
+        //jika alamat tidak ditemukan
+        if (result.length === 0){
+           return;
+        }
         const pertama = result[0];
         const posisi = L.latLng(pertama.lat,pertama.lon);
         console.log('Pindah ke posisi',posisi);
+        const display_name = pertama.display_name;
+
         this.mapService.goToLocation(posisi);
-        this.mapService.createMarker(posisi);
+        this.mapService.createMarker(posisi, display_name);
       }
     );
    
