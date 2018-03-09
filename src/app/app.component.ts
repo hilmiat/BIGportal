@@ -21,5 +21,7 @@ export class AppComponent implements OnInit{
     //menambahkan control untuk memilih layer
     L.control.layers(this.mapService.baseMaps).addTo(mymap);
     L.control.zoom({position:"bottomleft"}).addTo(mymap);
+    //simpan obj map pada MapService
+    this.mapService.mymap = mymap;
   }
 }

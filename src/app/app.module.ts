@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import "leaflet";
 import "esri-leaflet";
 import {FormsModule} from '@angular/forms'
-
+import { HttpClientModule } from '@angular/common/http'
 
 import { MapServiceService } from './service/map-service.service';
-import { SearchComponent } from './toolbox/search/search.component'
+import { SearchComponent } from './toolbox/search/search.component';
+import { GeolocationService } from './service/geolocation.service'
 
 @NgModule({
   declarations: [
@@ -18,9 +19,10 @@ import { SearchComponent } from './toolbox/search/search.component'
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [MapServiceService],
+  providers: [MapServiceService, GeolocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

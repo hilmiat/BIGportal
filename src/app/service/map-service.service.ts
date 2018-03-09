@@ -5,6 +5,7 @@ import * as esri from 'esri-leaflet'
 @Injectable()
 export class MapServiceService {
   public baseMaps: any;
+  public mymap:L.map;
   constructor() { 
     this.baseMaps = {
       OpenStreetMap:L.tileLayer(
@@ -20,5 +21,24 @@ export class MapServiceService {
         }
       ),
     }
+  }
+ /**
+  * Move map to given Location
+  * @param location 
+  */
+  goToLocation(location:L.LatLng){
+    this.mymap.panTo(location);
+  }
+  createMarker(position){
+    //buat icon
+    const k= L.icon(
+      {
+        iconUrl:'assets/icon_marker.png',
+        iconSize:[38,38],
+        // shadowUrl:''
+      }
+    );
+    //buat marker
+    const marker = L.marker(position,{icon:k}).addTo(this.mymap);
   }
 }
